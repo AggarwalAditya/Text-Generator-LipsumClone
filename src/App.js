@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
+import Output from './components/output'
 import './App.css';
+
+
+
 
 class App extends Component {
 
@@ -20,16 +24,18 @@ class App extends Component {
 		this.getSampleText();
 	}
 
-	getSampleText()
+	getSampleText = () =>
 	{
 		const hipsterURL="http://hipsterjesus.com/api/";
 		fetch(hipsterURL+"?paras="+this.state.paras+"&html="+this.state.html)
 		.then(function(res){
 			return res.json();
 		})
-		.then(function(data){
+		.then(data=>{
 			let stringJSON=JSON.stringify(data);
 			console.log(stringJSON);
+			this.setState({text:data.text})
+			console.log(this.state);
 		})
 	}
 
@@ -37,7 +43,7 @@ class App extends Component {
   {
     return (
       <div className="App">
-        Hello
+        <Output value={this.state.text} />
       </div>
     );
   }
