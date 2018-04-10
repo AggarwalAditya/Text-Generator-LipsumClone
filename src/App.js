@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import Output from './components/output'
+import Output from './components/output';
+import Select from './components/select';
+import Text from './components/text';
 import './App.css';
 
 
@@ -14,7 +16,7 @@ class App extends Component {
 
 		this.state={
 			paras: 4,
-			html: true,
+			html: 'true',
 			text: ' '
 		}
 	}
@@ -26,8 +28,8 @@ class App extends Component {
 
 	getSampleText = () =>
 	{
-		const hipsterURL="http://hipsterjesus.com/api/";
-		fetch(hipsterURL+"?paras="+this.state.paras+"&html="+this.state.html)
+		const hipsterURL='http://hipsterjesus.com/api/';
+		fetch(hipsterURL+'?paras='+this.state.paras+'&html='+this.state.html)
 		.then(function(res){
 			return res.json();
 		})
@@ -39,11 +41,35 @@ class App extends Component {
 		})
 	}
 
+	showHtml = (x) =>
+	{
+		this.setState({
+			html: x
+		},this.getSampleText)
+	}
+
+	changeParas = (x) =>
+	{
+		this.setState({
+			paras: x
+		},this.getSampleText)	
+	}
+
   render() 
   {
     return (
-      <div className="App">
+      <div className="App container">
+      	<h1>React JS Sample text Generator</h1>
+      	<hr />
+      	<form className="form-inline">
+      		<div className="form-group">
+      			<label>Inclue html:</label>
+      			<Select value={this.state.html} onChange={this.showHtml} />
+      			<Text value={this.state.paras}  onChange={this.changeParas} />
+      		</div>
+      	</form>
         <Output value={this.state.text} />
+
       </div>
     );
   }
