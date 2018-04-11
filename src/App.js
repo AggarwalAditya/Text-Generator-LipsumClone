@@ -65,7 +65,10 @@ class App extends Component {
       		<div className="form-group">
       			<label>Inclue html:</label>
       			<Select value={this.state.html} onChange={this.showHtml} />
+
+      			<label>Number of paragraphs:</label>
       			<Text value={this.state.paras}  onChange={this.changeParas} />
+      			
       		</div>
       	</form>
         <Output value={this.state.text} />
