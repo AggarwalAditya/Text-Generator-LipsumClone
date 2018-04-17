@@ -59,6 +59,13 @@ class App extends Component {
   {
     return (
       <div className="App container">
+
+
+
+      
+
+
+
       	<h1>React JS Sample text Generator</h1>
       	<hr />
       	<form className="form-inline">
@@ -68,7 +75,7 @@ class App extends Component {
 
       			<label>Number of paragraphs:</label>
       			<Text value={this.state.paras}  onChange={this.changeParas} />
-      			
+
       		</div>
       	</form>
         <Output value={this.state.text} />
